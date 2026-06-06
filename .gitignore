@@ -1,5 +1,6 @@
 data/anime
 data/metadata
+data/animes.csv
 data/manga
 data/ratings.csv
 data/patch_manga.jsonl
@@ -8,7 +9,7 @@ data/anilist_manga_complete.jsonl
 data/anilist_anime_complete.jsonl
 data/cleaned_metadata.csv
 data/cleaned_ratings.csv
-data/animes.csv
+data/.ipynb_checkpoints
 globalenv
 recommender_system/.ipynb_checkpoints
 .idea

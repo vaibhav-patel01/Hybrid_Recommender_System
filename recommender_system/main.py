@@ -1,6 +1,7 @@
 
 import pandas as pd
 import ast
+import os
 import pymssql
 from fastapi import FastAPI,Query , Path
 from fastapi.responses import JSONResponse
@@ -10,7 +11,9 @@ from recommender_system.recommender import hybrid_recommend1, hybrid_recommende2
 from recommender_system.search_aid import search_anime_id, search_all_anime_id
 
 app = FastAPI()
-df = pd.read_csv(r"D:\Data Science\Hybrid_Recommender_System\data\fully_final_metadata.csv", converters={
+base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+csv_path = os.path.join(base_dir, "data", "fully_final_metadata.csv")
+df = pd.read_csv(csv_path, converters={
     'title': ast.literal_eval,
     'genre': ast.literal_eval,
     'tags': ast.literal_eval,

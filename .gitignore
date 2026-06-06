@@ -1,0 +1,5 @@
+data
+globalenv
+recommender_system/.ipynb_checkpoints
+.idea
+recommender_system/__pycache__/

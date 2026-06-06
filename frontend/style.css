@@ -1,0 +1,645 @@
+:root {
+    --bg-dark: #0a0a0a;
+    --bg-surface: #111111;
+    --bg-surface-hover: #1e1e1e;
+    --accent-orange: #F47521;
+    --accent-orange-dim: rgba(244, 117, 33, 0.15);
+    --text-main: #FFFFFF;
+    --text-muted: #A0A0A0;
+    --border: #2a2a2a;
+    --transition: all 0.2s ease-in-out;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    overflow-x: hidden;
+}
+
+.hidden { display: none !important; }
+
+/* ── NAVBAR ─────────────────────────────────────── */
+.navbar {
+    background-color: rgba(10, 10, 10, 0.92);
+    backdrop-filter: blur(12px);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 200;
+    padding: 0.9rem 2rem;
+
+}
+.navbar1 {
+    /* Replace background-color, backdrop-filter, and border-bottom with this: */
+    background: linear-gradient(to bottom, rgba(10, 10, 10, 0.95) 0%, transparent 100%);
+    border-bottom: none;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 200;
+    padding: 0.9rem 2rem;
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.4rem;
+    font-weight: 800;
+    cursor: pointer;
+    letter-spacing: 1px;
+    user-select: none;
+}
+
+.logo-accent { color: var(--accent-orange); }
+
+/* nav search — hidden on home, shown on details */
+.nav-search {
+    width: 320px;
+    transition: opacity 0.3s;
+}
+.nav-search.hidden-search {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* ── SHARED SEARCH CONTAINER ────────────────────── */
+.search-container {
+    position: relative;
+}
+
+.search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+}
+
+.search-container input {
+    width: 100%;
+    padding: 0.65rem 1rem 0.65rem 42px;
+    background-color: rgba(255,255,255,0.06);
+    border: 1px solid var(--border);
+    color: var(--text-main);
+    border-radius: 6px;
+    outline: none;
+    transition: var(--transition);
+    font-size: 0.95rem;
+}
+
+.search-container input:focus {
+    border-color: var(--accent-orange);
+    background-color: rgba(255,255,255,0.09);
+}
+
+.search-container input::placeholder { color: var(--text-muted); }
+
+.search-dropdown {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    width: 100%;
+    background-color: #1a1a1a;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    max-height: 320px;
+    overflow-y: auto;
+    box-shadow: 0 16px 40px rgba(0,0,0,0.7);
+    z-index: 300;
+}
+
+.search-item {
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    border-bottom: 1px solid #1f1f1f;
+    transition: var(--transition);
+    font-size: 0.9rem;
+}
+.search-item:last-child { border-bottom: none; }
+.search-item:hover {
+    background-color: var(--bg-surface-hover);
+    color: var(--accent-orange);
+    padding-left: 1.3rem;
+}
+
+/* ── HERO ───────────────────────────────────────── */
+.hero {
+    position: relative;
+    height: 540px;
+    background:
+        url('one_piece_banner.jpeg')
+        center 30% / cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 1.5rem;
+    margin-top: 57px; /* navbar height */
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+        /* 1. Main vertical fade: clear top -> darkened center -> pure black bottom */
+        linear-gradient(
+            to bottom,
+            rgba(10, 10, 10, 0.1) 0%,   /* Barely there at the top so the artwork pops */
+            rgba(10, 10, 10, 0.6) 65%,  /* Darkens behind the text/search for readability */
+            rgba(10, 10, 10, 1) 100%    /* Absolute black at the bottom to blend flawlessly */
+        ),
+        /* 2. Side vignettes to frame the center */
+        linear-gradient(to right, rgba(10, 10, 10, 0.4), transparent, rgba(10, 10, 10, 0.4));
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 720px;
+    width: 100%;
+}
+
+.hero-eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent-orange);
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.hero-content h1 {
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 0.75rem;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.8);
+}
+
+.hero-accent { color: var(--accent-orange); }
+
+.hero-sub {
+    color: #c0c0c0;
+    font-size: 1.05rem;
+    margin-bottom: 2rem;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.8);
+}
+
+/* ── HERO SEARCH BOX ────────────────────────────── */
+.hero-search-container {
+    width: 100%;
+    max-width: 580px;
+    margin: 0 auto;
+}
+
+.hero-search-container input {
+    width: 100%;
+    padding: 1rem 1.2rem 1rem 50px;
+    font-size: 1rem;
+    border-radius: 10px;
+    background: rgba(10, 10, 10, 0.85);
+    border: 1.5px solid rgba(244, 117, 33, 0.5);
+    box-shadow:
+        0 0 0 4px rgba(244, 117, 33, 0.08),
+        0 8px 32px rgba(0,0,0,0.5);
+    color: var(--text-main);
+    outline: none;
+    transition: var(--transition);
+    backdrop-filter: blur(8px);
+}
+
+.hero-search-container input:focus {
+    border-color: var(--accent-orange);
+    box-shadow:
+        0 0 0 4px rgba(244, 117, 33, 0.15),
+        0 8px 32px rgba(0,0,0,0.5);
+}
+
+.hero-search-container .search-icon {
+    left: 16px;
+    color: var(--accent-orange);
+}
+
+.hero-search-container .search-dropdown {
+    border-radius: 10px;
+    top: calc(100% + 8px);
+}
+
+/* bottom fade into page*/
+.hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 180px;
+    background: linear-gradient(to bottom, transparent 0%, rgba(10,10,10,0.5) 45%, var(--bg-dark) 100%);
+    z-index: 1;
+    pointer-events: none;
+}
+/* ── CONTENT SECTIONS ───────────────────────────── */
+.content-section {
+    max-width: 1400px;
+    margin: 2.5rem auto;
+    padding: 0 2rem;
+}
+
+.section-title {
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
+    border-left: 4px solid var(--accent-orange);
+    padding-left: 12px;
+    font-weight: 700;
+}
+
+/* ── CARD GRID ──────────────────────────────────── */
+.card-grid {
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    gap: 18px;
+    padding-bottom: 24px; /* Breathing room for hover shadows and scrollbar */
+    scroll-behavior: smooth;
+
+    /* Firefox scrollbar support */
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+}
+
+/* Custom Webkit Scrollbar (Chrome, Safari, Edge) */
+.card-grid::-webkit-scrollbar {
+    height: 8px;
+}
+
+.card-grid::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.card-grid::-webkit-scrollbar-thumb {
+    background-color: var(--border);
+    border-radius: 10px;
+    transition: var(--transition);
+}
+
+.card-grid:hover::-webkit-scrollbar-thumb {
+    background-color: var(--accent-orange);
+}
+
+.card {
+    flex: 0 0 170px; /* Prevents cards from shrinking in the flex row */
+    cursor: pointer;
+    transition: var(--transition);
+    border-radius: 6px;
+    overflow: hidden;
+    background: var(--bg-surface);
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.5);
+}
+
+.card img {
+    width: 100%;
+    aspect-ratio: 2/3;
+    object-fit: cover;
+    display: block;
+}
+
+.card-title {
+    padding: 0.5rem 0.6rem;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--text-muted);
+    transition: var(--transition);
+}
+
+.card:hover .card-title {
+    color: var(--accent-orange);
+}
+/* ── DETAILS VIEW ───────────────────────────────── */
+.details-banner {
+    height: 320px;
+    background-position: center 20%;
+    background-size: cover;
+    position: relative;
+    margin-top: 57px;
+}
+
+.details-banner::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, var(--bg-dark) 0%, rgba(10,10,10,0.3) 100%);
+}
+
+.details-container {
+    max-width: 1400px;
+    margin: -110px auto 2rem;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 10;
+}
+
+.details-layout {
+    display: flex;
+    gap: 3rem;
+    align-items: flex-end;
+}
+
+.details-poster img {
+    width: 220px;
+    border-radius: 8px;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.9);
+    border: 2px solid var(--border);
+    flex-shrink: 0;
+}
+
+.details-info {
+    padding-top: 80px;
+    flex: 1;
+}
+
+.details-info h1 {
+    font-size: 2.4rem;
+    font-weight: 900;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+}
+
+.meta-tags {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 1.2rem;
+    flex-wrap: wrap;
+}
+
+.meta-tag {
+    background-color: var(--bg-surface);
+    padding: 5px 12px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+}
+
+.description {
+    line-height: 1.7;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    max-width: 780px;
+    font-size: 0.95rem;
+}
+
+.genres {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.genre-badge {
+    background-color: var(--accent-orange);
+    color: #fff;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    font-weight: 700;
+}
+/* ── EXPANDED DETAILS INFO ──────────────────────── */
+.extra-info {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+    color: #c0c0c0;
+    align-items: center;
+}
+
+.trailer-divider {
+    color: var(--border);
+}
+
+.trailer-link {
+    color: var(--accent-orange);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.trailer-link:hover {
+    text-shadow: 0 0 8px var(--accent-orange-dim);
+}
+
+.no-trailer {
+    color: #666;
+    font-style: italic;
+}
+
+/* ── TAGS (Secondary to Genres) ─────────────────── */
+.tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+}
+
+.tag-badge {
+    background-color: transparent;
+    color: var(--text-muted);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: var(--transition);
+    cursor: default;
+}
+
+.tag-badge:hover {
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.05);
+}
+/* ── NEW METADATA STYLES ───────────────────────── */
+.adult-badge {
+    background-color: rgba(220, 38, 38, 0.1) !important;
+    color: #ef4444 !important;
+    border-color: rgba(239, 68, 68, 0.4) !important;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.score-tag {
+    background-color: rgba(255, 215, 0, 0.1) !important;
+    color: #ffd700 !important;
+    border-color: rgba(255, 215, 0, 0.3) !important;
+    font-weight: 600;
+}
+
+.stats-text {
+    font-size: 0.85rem;
+    color: #888;
+    display: flex;
+    align-items: center;
+    margin-left: 4px;
+}
+/* ── SEARCH LIMIT SELECTOR ──────────────────────── */
+.limit-selector {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(20, 20, 20, 0.9);
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    padding: 6px 8px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    outline: none;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.limit-selector:hover, .limit-selector:focus {
+    color: var(--accent-orange);
+    border-color: var(--accent-orange);
+}
+
+/* Adjust search inputs so text doesn't type *under* the new dropdown */
+.search-container input {
+    padding-right: 90px;
+}
+
+/* ── RECOMMENDATIONS VIEW (Wrap Grid) ───────────── */
+.rec-header {
+    margin-top: 120px;
+    text-align: center;
+    padding: 0 2rem;
+}
+
+.rec-header h2 {
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.rec-header p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+}
+
+/* Unlike the horizontal scroll grid, this wraps cards beautifully onto multiple lines */
+.wrap-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 20px;
+    padding-bottom: 40px;
+}
+
+.wrap-grid .card {
+    flex: none; /* overrides the horizontal flex lock */
+    width: 100%;
+}
+/* ── NAV BUTTONS ────────────────────────────────── */
+.nav-buttons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.nav-btn {
+    padding: 7px 18px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-muted);
+    transition: var(--transition);
+}
+
+.nav-btn:hover {
+    color: var(--text-main);
+    border-color: var(--text-muted);
+}
+
+.nav-btn-accent {
+    border-color: var(--accent-orange);
+    color: var(--accent-orange);
+}
+
+.nav-btn-accent:hover {
+    background: var(--accent-orange);
+    color: #fff;
+}
+
+/* ── ABOUT MODAL ────────────────────────────────── */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+    padding: 1.5rem;
+}
+
+.modal-box {
+    background: #111;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    width: 100%;
+    max-width: 780px;
+    max-height: 82vh;
+    overflow-y: auto;
+    position: relative;
+    padding: 2.5rem 2.5rem 2rem;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+}
+
+.modal-close {
+    position: sticky;
+    top: 0;
+    float: right;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: var(--transition);
+    z-index: 10;
+}
+
+.modal-close:hover {
+    color: #fff;
+    border-color: #fff;
+}

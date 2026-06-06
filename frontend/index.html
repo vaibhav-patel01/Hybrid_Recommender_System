@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hybrid Recommender System</title>
+    <link rel="icon" type="image/png" href="crunchyroll logo.png">
+    <link rel="stylesheet" href="style.css?v=2">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="logo" onclick="goHome()">
+                <span class="logo-accent">Hybrid</span> Recommender
+            </div>
+            <!-- nav search: only visible when NOT on home -->
+            <div class="search-container nav-search" id="nav-search">
+                <span class="search-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                </span>
+                <input type="text" id="search-input" placeholder="Search anime or manhwa..." autocomplete="off">
+                <select class="limit-selector" id="nav-limit">
+                    <option value="10">10 Recs</option>
+                    <option value="20" selected>20 Recs</option>
+                    <option value="30">30 Recs</option>
+                    <option value="40">40 Recs</option>
+                </select>
+                <div id="search-dropdown" class="search-dropdown hidden"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- HOME VIEW -->
+    <main id="home-view" class="view-section">
+
+        <!-- BIG HERO with centered search -->
+        <div class="hero">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <p class="hero-eyebrow"></p>
+                <h1>Discover Your<br><span class="hero-accent">Next Obsession</span></h1>
+                <p class="hero-sub">Search any anime or manhwa — get instant personalized recommendations.</p>
+
+                <!-- HERO SEARCH BOX -->
+                <div class="hero-search-container search-container" id="hero-search-container">
+                    <span class="search-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    </span>
+                    <input type="text" id="hero-search-input" placeholder="e.g. Attack on Titan, Solo Leveling..." autocomplete="off">
+                    <select class="limit-selector" id="hero-limit">
+                        <option value="10">10 Recs</option>
+                        <option value="20" selected>20 Recs</option>
+                        <option value="30">30 Recs</option>
+                        <option value="40">40 Recs</option>
+                    </select>
+                    <div id="hero-search-dropdown" class="search-dropdown hidden"></div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- TRENDING ANIME -->
+        <section class="content-section">
+            <h2 class="section-title">Trending Anime</h2>
+            <div id="anime-grid" class="card-grid"></div>
+        </section>
+
+        <!-- TOP MANHWA -->
+        <section class="content-section">
+            <h2 class="section-title">Top Picks: Manhwa</h2>
+            <div id="manhwa-grid" class="card-grid"></div>
+        </section>
+
+    </main>
+    <!-- new page view -->
+    <main id="recommendations-view" class="view-section hidden">
+        <div class="rec-header">
+            <h2>Searched for <span id="rec-target-title" class="hero-accent">...</span></h2>
+            <p>Here are your personalized matches.</p>
+        </div>
+        <section class="content-section">
+            <div id="rec-grid" class="wrap-grid"></div>
+        </section>
+    </main>
+    <!-- DETAILS VIEW -->
+    <main id="details-view" class="view-section hidden">
+        <div id="details-banner" class="details-banner"></div>
+        <div class="details-container">
+            <div class="details-layout">
+                <div class="details-poster">
+                    <img id="detail-cover" src="" alt="Cover Image">
+                </div>
+                <div class="details-info">
+                    <h1 id="detail-title">Loading...</h1>
+
+                    <!-- Primary MetaData (Format, Score, Episodes) -->
+                    <div class="meta-tags" id="detail-meta"></div>
+
+                    <!-- Secondary Info (Studios, Trailer) -->
+                    <div class="extra-info" id="detail-extra"></div>
+
+                    <p id="detail-description" class="description"></p>
+
+                    <!-- Primary Genres -->
+                    <div class="genres" id="detail-genres"></div>
+
+                    <!-- Deep Tags (Hidden gem data) -->
+                    <div class="tags" id="detail-tags"></div>
+                </div>
+            </div>
+        </div>
+
+        <section class="content-section">
+            <h2 class="section-title">More Like This</h2>
+            <div id="similar-grid" class="card-grid"></div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>

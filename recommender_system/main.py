@@ -1,7 +1,7 @@
 
 import pandas as pd
 import ast
-import pyodbc
+import pymssql
 from fastapi import FastAPI,Query , Path
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
@@ -17,16 +17,18 @@ app = FastAPI()
 #     'studios': ast.literal_eval
 # } )
 server = r'PATEL-PERSONAL-\SQLEXPRESS'
-database = "anime/manga_prepared_data"
-connection_string = (
-    'Driver={ODBC Driver 17 for SQL Server};'
-                      f'Server={server};'
-                      f'Database={database};'
-                      'Trusted_Connection=yes;'
+database = 'anime/manga_prepared_data'
+
+# Connect using pymssql
+conn = pymssql.connect(
+    server=server,
+    user='recommender_app',
+    password='recpatel001',
+    database=database
 )
-conn = pyodbc.connect(connection_string)
+
 query = "SELECT * FROM metadata"
-df = pd.read_sql(query,conn)
+df = pd.read_sql(query, conn)
 
 app.add_middleware(
     CORSMiddleware,

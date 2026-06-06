@@ -2,7 +2,6 @@
 import pandas as pd
 import ast
 import os
-import pymssql
 from fastapi import FastAPI,Query , Path
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware

@@ -10,26 +10,12 @@ from recommender_system.recommender import hybrid_recommend1, hybrid_recommende2
 from recommender_system.search_aid import search_anime_id, search_all_anime_id
 
 app = FastAPI()
-# df = pd.read_csv(r"D:\Data Science\Hybrid_Recommender_System\data\fully_final_metadata.csv", converters={
-#     'title': ast.literal_eval,
-#     'genre': ast.literal_eval,
-#     'tags': ast.literal_eval,
-#     'studios': ast.literal_eval
-# } )
-server = r'PATEL-PERSONAL-\SQLEXPRESS'
-database = 'anime/manga_prepared_data'
-
-# Connect using pymssql
-conn = pymssql.connect(
-    server=server,
-    user='recommender_app',
-    password='recpatel001',
-    database=database
-)
-
-query = "SELECT * FROM metadata"
-df = pd.read_sql(query, conn)
-
+df = pd.read_csv(r"D:\Data Science\Hybrid_Recommender_System\data\fully_final_metadata.csv", converters={
+    'title': ast.literal_eval,
+    'genre': ast.literal_eval,
+    'tags': ast.literal_eval,
+    'studios': ast.literal_eval
+} )
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -37,15 +23,15 @@ app.add_middleware(
     allow_headers=["*"],
 )
 # Safely convert SQL string arrays back to Python lists
-def safe_eval(val):
-    try:
-        return ast.literal_eval(val) if isinstance(val, str) else val
-    except (ValueError, SyntaxError):
-        return val
-
-for col in ['title', 'genre', 'tags', 'studios']:
-    if col in df.columns:
-        df[col] = df[col].apply(safe_eval)
+# def safe_eval(val):
+#     try:
+#         return ast.literal_eval(val) if isinstance(val, str) else val
+#     except (ValueError, SyntaxError):
+#         return val
+#
+# for col in ['title', 'genre', 'tags', 'studios']:
+#     if col in df.columns:
+#         df[col] = df[col].apply(safe_eval)
 
 
 def info(df, aid):

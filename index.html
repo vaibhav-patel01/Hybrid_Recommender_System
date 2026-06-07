@@ -15,19 +15,26 @@
             <div class="logo" onclick="goHome()">
                 <span class="logo-accent">Hybrid</span> Recommender
             </div>
-            <!-- nav search: only visible when NOT on home -->
-            <div class="search-container nav-search" id="nav-search">
-                <span class="search-icon">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                </span>
-                <input type="text" id="search-input" placeholder="Search anime or manhwa..." autocomplete="off">
-                <select class="limit-selector" id="nav-limit">
-                    <option value="10">10 Recs</option>
-                    <option value="20" selected>20 Recs</option>
-                    <option value="30">30 Recs</option>
-                    <option value="40">40 Recs</option>
-                </select>
-                <div id="search-dropdown" class="search-dropdown hidden"></div>
+
+            <div class="nav-right">
+                <div class="search-container nav-search" id="nav-search">
+                    <span class="search-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    </span>
+                    <input type="text" id="search-input" placeholder="Search anime or manhwa..." autocomplete="off">
+                    <select class="limit-selector" id="nav-limit">
+                        <option value="10">10 Recs</option>
+                        <option value="20" selected>20 Recs</option>
+                        <option value="30">30 Recs</option>
+                        <option value="40">40 Recs</option>
+                    </select>
+                    <div id="search-dropdown" class="search-dropdown hidden"></div>
+                </div>
+
+                <div class="nav-buttons">
+                    <a href="https://www.linkedin.com/in/vaibhav-patel-5639aa355/" target="_blank" rel="noopener noreferrer" class="nav-btn5">Profile</a>
+                    <a href="https://github.com/vaibhav-patel01/Hybrid_Recommender_System/blob/main/README.md" target="_blank" rel="noopener noreferrer" class="nav-btn5">About</a>
+                </div>
             </div>
         </div>
     </header>
